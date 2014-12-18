@@ -1,0 +1,42 @@
+---
+title: "CodeBook"
+author: "James Carroll"
+date: "Thursday, December 18, 2014"
+output: html_document
+---
+
+The run_analysis.R script utilises data obtained from Accelerometers within a Samsung Galaxy S Phone as users perform several different activities. 
+
+The available data comprise:
+
+- `features.txt` which describes the column headings for the `x_test.txt` and `x_train.txt` files
+- `x_test.txt` and `x_train.txt` provide values for a range of variables as described in `features.txt`
+- `activity_labels.txt` which gives a translation of the activity ID found in `y_test.txt` and `y_train.txt` files
+- `y_test.txt` and `y_train.txt` which hold index values of the `activityID` field, describing what the participants were doing to generate the data. 
+
+There are a large number of variables within the `x_test.txt` and `x_train.txt` data sets which give readouts for a variety of Gyroscopes and Accelerometers across the X, Y, and Z plane. Additionally, mean and standard deviation values are recorded. 
+
+The key created variables within the analysis are: 
+
+- `allx` which is a row bound table containing both `x_test` and `x_train`
+- `ally` which is a row bound table containing both `y_test` and `y_train`
+- `allsubject` which is a row bound table containing both `subject_test` and `subject_train`
+- `alldata` which is a column bound table containing `allsubject`, `ally`, `allx` in that order
+- `mandsdata` which is a subset of `alldata` containing only those columns which contain a Mean or Standard Deviation Measure. 
+- `averages` the final clean, tidy table which gives the mean of each column across each subject and each activity. 
+
+run_analysis.R takes the following steps to clean and tidy the data before exporting a cleaned data table. 
+
+- First, all of the data is loaded, and named as per the file names. 
+
+- Second, `x_test` and `x_train` are joined to give `allx`, `y_test` and `y_train` are joined to give `ally`, and `subject_test` and `subject_train` are joined to give `allsubject`. 
+
+- Third, `allsubject` and `activity_labels` have their columns renamed to give meaningful titles. 
+
+- Fourth, the activityID column of numbers in substituted for the activities represented by their codes, and column names are given to `ally` and `allx`. 
+
+- Fifth, an index vector of all columns containing means and standard deviations is created. This is then used to subset the full data set, `alldata`, and provide the working data set `mandsdata`. 
+
+- Sixth, a number of cleaning routines are implemented, expanding the contracted names to full labels for better understanding, and removal of hyphens and brackets.
+
+- Seventh, `ddply` is invoked to create the column means by Activity and Subject before exporting the table as a txt file. 

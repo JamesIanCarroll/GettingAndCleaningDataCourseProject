@@ -1,0 +1,16 @@
+---
+title: "Readme"
+author: "James Carroll"
+date: "Thursday, December 18, 2014"
+output: html_document
+---
+This Readme offers guidance as to the implementation of `run_analysis.txt` and use of `CodeBook.md`.
+
+
+This Repository contains `run_analysis.R` an R Script for cleaning the dataset provided at the following link: `http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones`. 
+
+The R Script `run_analysis.R` will work following download of the compressed data file and extraction of the data in the same strcture as compressed. 
+
+The working directory where this extracted data must then be set before running the script; it will move between the folders automatically. 
+
+`CodeBook.md` provides detail of the process taken to combine and clean the data set before exporting the file `Column Means By Activty By Subject.txt` to the Working Directory as set at the start. 
